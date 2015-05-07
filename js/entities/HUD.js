@@ -17,6 +17,9 @@ game.HUD.Container = me.Container.extend({
         // make sure we use screen coordinates
         this.floating = true;
 
+        //non collidable
+        this.collidable = false;
+
         // make sure our object is always draw first
         this.z = Infinity;
 
@@ -47,7 +50,6 @@ game.HUD.ScoreItem = me.Renderable.extend({
     /**
      * constructor
      */
-
     init: function(x, y) {
 
         // call the parent constructor
@@ -55,27 +57,18 @@ game.HUD.ScoreItem = me.Renderable.extend({
         this._super(me.Renderable, 'init', [x, y, 10, 10]);
 
         // local copy of the global score
-        this.score = -1;
-    },
+        this.scoreFont = new me.Font('gamefont', 80, '#000', 'center');
 
-    /**
-     * update function
-     */
-    update : function () {
-        // we don't do anything fancy here, so just
-        // return true if the score has been updated
-        if (this.score !== game.data.score) {
-            this.score = game.data.score;
-            return true;
-        }
-        return false;
+        this.floating = true;
     },
 
     /**
      * draw the score
      */
-    draw : function (context) {
-        // draw it baby !
+    draw : function (renderer) {
+        var context = renderer.getContext();
+        if (game.data.start && me.state.isCurrent(me.state.PLAY))
+            this.scoreFont.draw(context, game.data.score, me.video.renderer.getWidth()/2, 10);
     }
 
 });

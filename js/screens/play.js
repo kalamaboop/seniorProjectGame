@@ -9,7 +9,7 @@ game.PlayScreen = me.ScreenObject.extend({
         me.input.bindKey(me.input.KEY.SPACE, "jump", true);
         // reset the score
         game.data.score = 0;
-        //game.data.start = false;
+        game.data.start = false;
 
         me.game.world.addChild(new BackgroundLayer('bg', 1));
 

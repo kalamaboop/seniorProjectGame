@@ -65,6 +65,8 @@ var CharEntity = me.Entity.extend({
         var obj = response.b;
         if (obj.type === 'barrel') {
           this.collided = true;
+          ground.body.vel.set = (0, 0);
+          char.pos.x = char.pos.x;
         }
         // Make all other objects solid
         return true;
@@ -94,6 +96,7 @@ var BarrelEntity = me.Entity.extend({
       this.pos.add(this.body.vel);
       if (this.pos.x < -this.width) {
           me.game.world.removeChild(this);
+          game.data.score++;
       }
       this.updateBounds();
       this._super(me.Entity, 'update', [dt]);
@@ -115,10 +118,8 @@ var BarrelGenerator = me.Renderable.extend({
       this.generate += 1;
       if (this.generate % this.frequency === 0) {
 
-        var barrel1 = new me.pool.pull('barrel', this.posX, this.posY);
-        var barrel2 = new me.pool.pull('barrel', this.posX, this.posY);
-        me.game.world.addChild(barrel1, 10);
-        me.game.world.addChild(barrel2, 10);
+        var barrel = new me.pool.pull('barrel', this.posX, this.posY);
+        me.game.world.addChild(barrel, 10);
       }
       this._super(me.Entity, "update", [dt]);
       return true;
