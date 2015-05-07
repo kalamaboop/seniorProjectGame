@@ -1,0 +1,139 @@
+/**
+ * Player Entity
+ */
+var CharEntity = me.Entity.extend({
+    init:function (x, y) {
+        var settings = {};
+        settings.image = me.loader.getImage('char');
+        settings.width = 80;
+        settings.height = 80;
+        settings.spritewidth = 80;
+        settings.spriteheight = 80;
+        // call the constructor
+        this._super(me.Entity, 'init', [x, y , settings]);
+        this.alwaysUpdate = true;
+        //this.body.gravity = 0.2;
+        //this.gravityForce = 0.01;
+        this.renderable.anchorPoint = new me.Vector2d(0.1, 0.5);
+        this.body.addShape(new me.Rect(5, 5, 75, 75));
+        this.jumpTween = new me.Tween(this.pos);
+        this.jumpTween.easing(me.Tween.Easing.Exponential.InOut);
+        this.endTween = null;
+        this.collided = false;
+
+    },
+
+    update : function (dt) {
+        if (this.pos.x > (me.game.viewport.width - this.width)) {
+          this.pos.x = me.game.viewport.width - this.width;
+        }
+        if (this.pos.y < me.game.viewport.height/2 + 124 && this.pos.x > 59) {
+          this.body.update(dt);
+        }
+
+        else if (me.input.isKeyPressed('jump')){ //&& this.pos.y <= me.game.viewport.height/2 + 124) {
+          var currentPos = this.pos.y;
+          this.jumpTween.stop();
+          this.pos.y = (this.pos.y - 10) * 0.5;
+          //this.jumpTween.to({y: currentPos - 200}, 50);
+          this.jumpTween.start();
+            this.pos.x += 100;
+        }
+        if (this.pos.x > 60 && this.pos.y >= me.game.viewport.height/2 + 124) {
+            this.pos.x -= 6;
+        }
+        //else {
+        //  this.gravityForce += 0.2;
+        //  this.pos.y += me.timer.tick * this.gravityForce;
+        //}
+
+        this.updateBounds();
+
+        // handle collisions against other shapes
+        me.collision.check(this);
+
+        // return true if we moved or if the renderable was updated
+        return (this._super(me.Entity, 'update', [dt]) || this.body.vel.x !== 0 || this.body.vel.y !== 0);
+    },
+
+    onCollision : function (response, other) {
+        var obj = response.b;
+        if (obj.type === 'barrel') {
+          this.collided = true;
+        }
+        // Make all other objects solid
+        return true;
+    }
+});
+
+var BarrelEntity = me.Entity.extend({
+    init: function(x, y) {
+        var settings = {};
+        settings.image = me.loader.getImage('barrel');
+        settings.width = 40;
+        settings.height = 45;
+        settings.spritewidth = 40;
+        settings.spriteheight = 45;
+
+        this._super(me.Entity, 'init', [x, y, settings]);
+        this.alwaysUpdate = true;
+        this.body.addShape(new me.Rect(0, 0, settings.width, settings.height));
+        this.body.vel.set(-8, 0);
+        this.type = 'barrel';
+    },
+
+    update: function(dt) {
+      if (!game.data.start) {
+          return this._super(me.Entity, 'update', [dt]);
+      }
+      this.pos.add(this.body.vel);
+      if (this.pos.x < -this.width) {
+          me.game.world.removeChild(this);
+      }
+      this.updateBounds();
+      this._super(me.Entity, 'update', [dt]);
+      return true;
+    },
+});
+
+var BarrelGenerator = me.Renderable.extend({
+    init: function() {
+        this._super(me.Renderable, 'init', [0, me.game.viewport.width, me.game.viewport.height]);
+        this.alwaysUpdate = true;
+        this.generate = 0;
+        this.posX = me.game.viewport.width;
+        this.posY = me.game.viewport.height;
+    },
+
+    update: function(dt) {
+      var barrel1 = new me.pool.pull('barrel', this.posX, this.posY);
+      var barrel2 = new me.pool.pull('barrel', this.posX, this.posY);
+      me.game.world.addChild(barrel1, 10);
+      me.game.world.addChild(barrel2, 10);
+    }
+})
+
+var Ground = me.Entity.extend({
+    init: function(x, y) {
+      var settings = {};
+      settings.image = me.loader.getImage('ground');
+      settings.width = 900;
+      settings.height = 96;
+      this._super(me.Entity, 'init', [x, y, settings]);
+      this.alwaysUpdate = true;
+
+      this.body.vel.set(-8, 0);
+      this.body.addShape(new me.Rect(0, 0, settings.width, settings.height));
+      this.type = 'ground';
+    },
+
+    update: function(dt) {
+      //mechanics
+      this.pos.add(this.body.vel);
+      if (this.pos.x < -this.renderable.width) {
+          this.pos.x = me.video.renderer.getWidth() - 10;
+      }
+      this.updateBounds();
+      return this._super(me.Entity, 'update', [dt]);
+    },
+})
