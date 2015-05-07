@@ -29,8 +29,8 @@ game.PlayScreen = me.ScreenObject.extend({
         me.input.bindPointer(me.input.mouse.LEFT, me.input.KEY.SPACE);
 
         game.data.start = true;
-        me.game.world.addChild(new BarrelGenerator(), 0);
-        
+        me.game.world.addChild(new BarrelGenerator(), 100);
+
     },
 
     /**

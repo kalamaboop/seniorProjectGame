@@ -49,6 +49,11 @@ var CharEntity = me.Entity.extend({
 
         this.updateBounds();
 
+        if (this.collided) {
+          game.data.start = false;
+          return false;
+        }
+
         // handle collisions against other shapes
         me.collision.check(this);
 
@@ -101,15 +106,22 @@ var BarrelGenerator = me.Renderable.extend({
         this._super(me.Renderable, 'init', [0, me.game.viewport.width, me.game.viewport.height]);
         this.alwaysUpdate = true;
         this.generate = 0;
+        this.frequency = 92;
         this.posX = me.game.viewport.width;
-        this.posY = me.game.viewport.height;
+        this.posY = me.game.viewport.height - 145;
     },
 
     update: function(dt) {
-      var barrel1 = new me.pool.pull('barrel', this.posX, this.posY);
-      var barrel2 = new me.pool.pull('barrel', this.posX, this.posY);
-      me.game.world.addChild(barrel1, 10);
-      me.game.world.addChild(barrel2, 10);
+      this.generate += 1;
+      if (this.generate % this.frequency === 0) {
+
+        var barrel1 = new me.pool.pull('barrel', this.posX, this.posY);
+        var barrel2 = new me.pool.pull('barrel', this.posX, this.posY);
+        me.game.world.addChild(barrel1, 10);
+        me.game.world.addChild(barrel2, 10);
+      }
+      this._super(me.Entity, "update", [dt]);
+      return true;
     }
 })
 

@@ -3,6 +3,7 @@ game.resources = [
     {name: "bg", type:"image", src: "data/img/bg.png"},
     {name: "char", type:"image", src: "data/img/char.png"},
     {name: "ground", type:"image", src: "data/img/ground.png"},
+    {name: "barrel", type:"image", src: "data/img/barrel.png"},
     /* Graphics.
      * @example
      * {name: "example", type:"image", src: "data/img/example.png"},
