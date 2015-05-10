@@ -27,19 +27,19 @@ var CharEntity = me.Entity.extend({
         if (this.pos.x > (me.game.viewport.width - this.width)) {
           this.pos.x = me.game.viewport.width - this.width;
         }
-        if (this.pos.y <= 325) {
-          for (i = 1; i < 20; i++){
-              this.pos.y += 5;
-          }
+        //if (this.pos.y < me.game.viewport.height/2 + 124) {
           //this.body.update(dt);
-        }
-
-        else if (me.input.isKeyPressed('jump')){ //&& this.pos.y <= me.game.viewport.height/2 + 124) {
-          for (i = 1; i < 20; i++) {
-              this.pos.y -= 5;
-          }
-          
-          //this.pos.x += 100;
+        //}
+        if (me.input.isKeyPressed('jump')){ //&& this.pos.y <= me.game.viewport.height/2 + 124) {
+            var maxHeight = (me.game.viewport.height / 3);
+            if (this.pos.y > maxHeight) {
+                this.pos.y += 10;
+                this.pos.x += 10;
+            }
+            else if (this.pos.y < maxHeight) {
+                this.pos.y -= 10;
+                this.pos.x += 10;
+            }
         }
         if (this.pos.x > 60 && this.pos.y >= me.game.viewport.height/2 + 124) {
             this.pos.x -= 6;
@@ -48,17 +48,13 @@ var CharEntity = me.Entity.extend({
         //  this.gravityForce += 0.2;
         //  this.pos.y += me.timer.tick * this.gravityForce;
         //}
-
         this.updateBounds();
-
         if (this.collided) {
           game.data.start = false;
           return false;
         }
-
         // handle collisions against other shapes
         me.collision.check(this);
-
         // return true if we moved or if the renderable was updated
         return (this._super(me.Entity, 'update', [dt]) || this.body.vel.x !== 0 || this.body.vel.y !== 0);
     },
