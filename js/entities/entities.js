@@ -27,7 +27,7 @@ var CharEntity = me.Entity.extend({
         if (this.pos.x > (me.game.viewport.width - this.width)) {
           this.pos.x = me.game.viewport.width - this.width;
         }
-        if (this.pos.y =< 325) {
+        if (this.pos.y <= 325) {
           for (i = 1; i < 20; i++){
               this.pos.y += 5;
           }
