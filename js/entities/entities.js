@@ -28,15 +28,15 @@ var CharEntity = me.Entity.extend({
           this.pos.x = me.game.viewport.width - this.width;
         }
         if (this.pos.y < me.game.viewport.height/2 + 124 && this.pos.x > 59) {
-          for (i = 1; i < 5; i++){
-              this.pos.y = this.pos.y + (this.pos.y * 2);
+          for (i = 1; i < 20; i++){
+              this.pos.y += 5;
           }
           //this.body.update(dt);
         }
 
         else if (me.input.isKeyPressed('jump')){ //&& this.pos.y <= me.game.viewport.height/2 + 124) {
-          for (i = 1; i < 5; i++) {
-              this.pos.y = this.pos.y - (this.pos.y / 2);
+          for (i = 1; i < 20; i++) {
+              this.pos.y -= 5;
           }
           
           //this.pos.x += 100;
