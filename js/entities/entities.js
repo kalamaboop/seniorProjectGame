@@ -31,7 +31,7 @@ var CharEntity = me.Entity.extend({
             var currentPos = this.pos.y;
             this.jumpTween.stop();
             
-            this.jumpTween.to({y: currentPos - 130}, 50);
+            this.jumpTween.to({y: currentPos - 160}, 50);
             this.jumpTween.start();
         }
         if (this.pos.x > 60 && this.pos.y >= me.game.viewport.height/2 + 124) {
@@ -40,10 +40,10 @@ var CharEntity = me.Entity.extend({
         if (this.pos.x > (me.game.viewport.width - this.width)) {
           this.pos.x = me.game.viewport.width - this.width;
         }
-        else {
-          this.gravityForce += 0.2;
-          this.pos.y += me.timer.tick * this.gravityForce;
-        }
+        //else {
+          //this.gravityForce += 0.2;
+          //this.pos.y += me.timer.tick * this.gravityForce;
+        //}
         this.updateBounds();
         if (this.collided) {
           game.data.start = false;
