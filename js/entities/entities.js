@@ -110,7 +110,7 @@ var BarrelGenerator = me.Renderable.extend({
         var posX = Number.prototype.random(
             200,
             me.video.renderer.getWidth() + 100
-        );
+        ) + me.game.viewport.width;
         var barrel = new me.pool.pull('barrel', posX, this.posY);
         me.game.world.addChild(barrel, 10);
       }
