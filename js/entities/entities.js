@@ -30,8 +30,8 @@ var CharEntity = me.Entity.extend({
         else if (me.input.isKeyPressed('jump')) {
             var currentPos = this.pos.y;
             this.jumpTween.stop();
-            for (i = 0; i < 6; i++) {
-                this.jumpTween.to({y: currentPos - 40}, 50);
+            for (i = 0; i < 10; i++) {
+                this.jumpTween.to({y: currentPos - 100}, 50);
             }
             this.jumpTween.start();
         }
@@ -50,7 +50,7 @@ var CharEntity = me.Entity.extend({
         // handle collisions against other shapes
         me.collision.check(this);
         // return true if we moved or if the renderable was updated
-        return (this._super(me.Entity, 'update', [dt]) || this.body.vel.x !== 0 || this.body.vel.y !== 0);
+        return (this._super(me.Entity, 'update', [dt])); //|| this.body.vel.x !== 0 || this.body.vel.y !== 0);
     },
 
     onCollision : function (response, other) {
