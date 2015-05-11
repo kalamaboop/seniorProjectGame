@@ -31,8 +31,8 @@ var CharEntity = me.Entity.extend({
             var currentPos = this.pos.y;
             this.jumpTween.stop();
             for (i = 0; i < 10; i++) {
-                if (i === 7) { break; }
-                this.jumpTween.to({y: currentPos - 20}, 50);
+                if (i === 10) { break; }
+                this.jumpTween.to({y: currentPos - 40}, 50);
             }
             this.jumpTween.start();
         }
