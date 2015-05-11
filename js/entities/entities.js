@@ -30,7 +30,7 @@ var CharEntity = me.Entity.extend({
         if (this.pos.y < me.game.viewport.height/2 + 124) {
           this.body.update(dt);
         }
-        if (me.input.isKeyPressed('jump')){ //&& this.pos.y <= me.game.viewport.height/2 + 124) {
+        else if (me.input.isKeyPressed('jump')){ //&& this.pos.y <= me.game.viewport.height/2 + 124) {
             var maxHeight = (me.game.viewport.height / 3);
             if (this.pos.y > maxHeight) {
                 for (i = 1; i > 5; i++) {
