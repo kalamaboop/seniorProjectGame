@@ -40,10 +40,10 @@ var CharEntity = me.Entity.extend({
         else if (this.pos.x > (me.game.viewport.width - this.width)) {
           this.pos.x = me.game.viewport.width - this.width;
         }
-        else {
-          this.gravityForce += 0.2;
-          this.pos.y += me.timer.tick * this.gravityForce;
-        }
+        //else {
+        //  this.gravityForce += 0.2;
+        //  this.pos.y += me.timer.tick * this.gravityForce;
+        //}
         this.updateBounds();
         if (this.collided) {
           game.data.start = false;
