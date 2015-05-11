@@ -100,15 +100,18 @@ var BarrelGenerator = me.Renderable.extend({
         this.alwaysUpdate = true;
         this.generate = 0;
         this.frequency = 92;
-        this.posX = me.game.viewport.width;
+        
         this.posY = me.game.viewport.height - 145;
     },
 
     update: function(dt) {
       this.generate += 1;
       if (this.generate % this.frequency === 0) {
-
-        var barrel = new me.pool.pull('barrel', this.posX, this.posY);
+        var posX = Number.prototype.random(
+            me.video.renderer.getWidth() - 100,
+            200
+        );
+        var barrel = new me.pool.pull('barrel', posX, this.posY);
         me.game.world.addChild(barrel, 10);
       }
       this._super(me.Entity, "update", [dt]);
