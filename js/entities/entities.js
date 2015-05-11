@@ -110,10 +110,8 @@ var BarrelGenerator = me.Renderable.extend({
             200,
             me.video.renderer.getWidth() + 100
         ) + me.game.viewport.width;
-        if (posX > (BarrelEntity.pos.x + 50)) {
-            var barrel = new me.pool.pull('barrel', posX, this.posY);
-            me.game.world.addChild(barrel, 10);
-        }
+        var barrel = new me.pool.pull('barrel', posX, this.posY);
+        me.game.world.addChild(barrel, 10);
       }
       this._super(me.Entity, "update", [dt]);
       return true;
