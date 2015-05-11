@@ -12,8 +12,8 @@ var CharEntity = me.Entity.extend({
         // call the constructor
         this._super(me.Entity, 'init', [x, y , settings]);
         this.alwaysUpdate = true;
-        //this.body.gravity = 0.2;
-        //this.gravityForce = 0.01;
+        this.body.gravity = 0.2;
+        this.gravityForce = 0.01;
         this.renderable.anchorPoint = new me.Vector2d(0.1, 0.5);
         this.body.addShape(new me.Rect(5, 5, 75, 75));
         this.jumpTween = new me.Tween(this.pos);
@@ -30,8 +30,8 @@ var CharEntity = me.Entity.extend({
         else if (me.input.isKeyPressed('jump')){ //&& this.pos.y <= me.game.viewport.height/2 + 124) {
             var currentPos = this.pos.y;
             this.jumpTween.stop();
-            for (i = 0; i < 6; i++){
-                this.pos.y = (this.pos.y - 50) / 1.5;
+            for (i = 0; i < 9; i++){
+                this.pos.y = (this.pos.y - 50);
                 this.pos.x += 20;
             }
             //this.jumpTween.to({y: currentPos - 100}, 50);
@@ -43,10 +43,10 @@ var CharEntity = me.Entity.extend({
         else if (this.pos.x > (me.game.viewport.width - this.width)) {
           this.pos.x = me.game.viewport.width - this.width;
         }
-        //else {
-        //  this.gravityForce += 0.2;
-        //  this.pos.y += me.timer.tick * this.gravityForce;
-        //}
+        else {
+          this.gravityForce += 0.2;
+          this.pos.y += me.timer.tick * this.gravityForce;
+        }
         this.updateBounds();
         if (this.collided) {
           game.data.start = false;
