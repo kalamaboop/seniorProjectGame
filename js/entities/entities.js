@@ -24,20 +24,21 @@ var CharEntity = me.Entity.extend({
     },
 
     update : function (dt) {
-        if (this.pos.x > (me.game.viewport.width - this.width)) {
-          this.pos.x = me.game.viewport.width - this.width;
-        }
-        else if (this.pos.y < me.game.viewport.height/2 + 124) {
+        
+        if (this.pos.y < me.game.viewport.height/2 + 124) {
           this.body.update(dt);
         }
         else if (me.input.isKeyPressed('jump')){ //&& this.pos.y <= me.game.viewport.height/2 + 124) {
             for (i = 1; i < 5; i++) {
-            this.pos.y += 10;
-            this.pos.x += 10;
+            this.pos.y += 20;
+            //this.pos.x += 10;
             }
         }
         else if (this.pos.x > 60 && this.pos.y >= me.game.viewport.height/2 + 124) {
             this.pos.x -= 6;
+        }
+        else if (this.pos.x > (me.game.viewport.width - this.width)) {
+          this.pos.x = me.game.viewport.width - this.width;
         }
         //else {
         //  this.gravityForce += 0.2;
