@@ -29,10 +29,10 @@ var CharEntity = me.Entity.extend({
           this.body.update(dt);
         }
         else if (me.input.isKeyPressed('jump')){ //&& this.pos.y <= me.game.viewport.height/2 + 124) {
-            for (i = 1; i < 5; i++) {
-            this.pos.y += 20;
-            //this.pos.x += 10;
-            }
+            var currentPos = this.pos.y;
+            this.jumpTween.stop();
+            this.jumpTween.to(y: currentPos - 72}, 50);
+            this.jumpTween.start();
         }
         else if (this.pos.x > 60 && this.pos.y >= me.game.viewport.height/2 + 124) {
             this.pos.x -= 6;
