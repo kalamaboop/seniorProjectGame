@@ -23,7 +23,7 @@ game.PlayScreen = me.ScreenObject.extend({
         me.game.world.addChild(this.HUD);
 
         this.char = me.pool.pull("char", 60, 400);
-        me.game.world.addChild(this.char, 10);
+        me.game.world.addChild(this.char, 11);
 
         //inputs
         me.input.bindPointer(me.input.mouse.LEFT, me.input.KEY.SPACE);
