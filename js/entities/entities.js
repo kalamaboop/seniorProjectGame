@@ -32,6 +32,7 @@ var CharEntity = me.Entity.extend({
             this.jumpTween.stop();
             this.jumpTween.to({y: currentPos - 160}, 50);
             this.jumpTween.start();
+            this.pos.x += 100;
         }
         if (this.pos.x > 60 && this.pos.y >= me.game.viewport.height/2 + 124) {
             this.pos.x -= 6;
