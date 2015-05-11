@@ -27,7 +27,7 @@ var CharEntity = me.Entity.extend({
         if (this.pos.y < me.game.viewport.height/2 + 124) {
           this.body.update(dt);
         }
-        if (me.input.isKeyPressed('jump') && this.pos.y > me.game.viewport.height/2 + 124) {
+        if (me.input.isKeyPressed('jump') && this.pos.y <= me.game.viewport.height/2 + 124) {
             var currentPos = this.pos.y;
             this.jumpTween.stop();
             this.jumpTween.to({y: currentPos - 160}, 50);
