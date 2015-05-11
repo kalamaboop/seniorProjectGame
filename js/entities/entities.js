@@ -25,7 +25,7 @@ var CharEntity = me.Entity.extend({
 
     update : function (dt) {
         if (this.pos.y < me.game.viewport.height/2 + 124) {
-            this.pos.y += 5.5;
+            this.pos.y += 6;
           //this.body.update(dt);
         }
         else if (me.input.isKeyPressed('jump')) {
