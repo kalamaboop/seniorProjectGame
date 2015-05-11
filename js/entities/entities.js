@@ -34,10 +34,10 @@ var CharEntity = me.Entity.extend({
             this.jumpTween.start();
         }
         
-        else {
+        //else {
           //this.gravityForce += 0.2;
-          this.pos.y += me.timer.tick * this.gravityForce;
-        }
+          //this.pos.y += me.timer.tick * this.gravityForce;
+        //}
         this.updateBounds();
         if (this.collided) {
           game.data.start = false;
