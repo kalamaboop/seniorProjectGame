@@ -24,14 +24,16 @@ var CharEntity = me.Entity.extend({
     },
 
     update : function (dt) {
-        
         if (this.pos.y < me.game.viewport.height/2 + 124) {
           this.body.update(dt);
         }
         else if (me.input.isKeyPressed('jump')){ //&& this.pos.y <= me.game.viewport.height/2 + 124) {
             var currentPos = this.pos.y;
             this.jumpTween.stop();
-            this.jumpTween.to({y: currentPos - 100}, 50);
+            for (i = 0; i < 6; i++){
+                this.pos.y -= 50;
+            }
+            //this.jumpTween.to({y: currentPos - 100}, 50);
             this.jumpTween.start();
         }
         else if (this.pos.x > 60 && this.pos.y >= me.game.viewport.height/2 + 124) {
