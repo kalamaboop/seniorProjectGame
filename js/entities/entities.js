@@ -30,16 +30,16 @@ var CharEntity = me.Entity.extend({
         else if (me.input.isKeyPressed('jump')) {
             var currentPos = this.pos.y;
             this.jumpTween.stop();
-            this.jumpTween.to({y: currentPos - 140}, 50);
+            this.jumpTween.to({y: currentPos - 150}, 50);
             this.jumpTween.start();
         }
         if (this.pos.x > (me.game.viewport.width - this.width)) {
           this.pos.x = me.game.viewport.width - this.width;
         }
-        //else {
-          //this.gravityForce += 0.2;
-          //this.pos.y += me.timer.tick * this.gravityForce;
-        //}
+        else {
+          this.gravityForce += 0.2;
+          this.pos.y += me.timer.tick * this.gravityForce;
+        }
         this.updateBounds();
         if (this.collided) {
           game.data.start = false;
