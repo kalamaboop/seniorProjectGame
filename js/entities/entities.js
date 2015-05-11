@@ -30,7 +30,9 @@ var CharEntity = me.Entity.extend({
         else if (me.input.isKeyPressed('jump')) {
             var currentPos = this.pos.y;
             this.jumpTween.stop();
-            this.jumpTween.to({y: currentPos - 180}, 50);
+            for (i = 0; i < 6; i++) {
+                this.jumpTween.to({y: currentPos - 40}, 50);
+            }
             this.jumpTween.start();
         }
         if (this.pos.x > (me.game.viewport.width - this.width)) {
