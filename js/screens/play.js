@@ -22,7 +22,7 @@ game.PlayScreen = me.ScreenObject.extend({
         this.HUD = new game.HUD.Container();
         me.game.world.addChild(this.HUD);
 
-        this.char = me.pool.pull("char", 60, 400);
+        this.char = me.pool.pull("char", 200, 400);
         me.game.world.addChild(this.char, 12);
 
         //inputs
