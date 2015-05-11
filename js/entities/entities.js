@@ -33,11 +33,9 @@ var CharEntity = me.Entity.extend({
             this.jumpTween.to({y: currentPos - 150}, 50);
             this.jumpTween.start();
         }
-        if (this.pos.x > (me.game.viewport.width - this.width)) {
-          this.pos.x = me.game.viewport.width - this.width;
-        }
+        
         else {
-          this.gravityForce += 0.2;
+          //this.gravityForce += 0.2;
           this.pos.y += me.timer.tick * this.gravityForce;
         }
         this.updateBounds();
