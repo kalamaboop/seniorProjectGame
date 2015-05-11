@@ -108,7 +108,7 @@ var BarrelGenerator = me.Renderable.extend({
       this.generate += 1;
       if (this.generate % this.frequency === 0) {
         var posX = Number.prototype.random(
-            me.video.renderer.getWidth() - 100,
+            me.video.renderer.getWidth() + 100,
             200
         );
         var barrel = new me.pool.pull('barrel', posX, this.posY);
