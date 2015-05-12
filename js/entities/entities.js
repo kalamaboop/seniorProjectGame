@@ -54,8 +54,6 @@ var CharEntity = me.Entity.extend({
         var obj = response.b;
         if (obj.type === 'barrel') {
           this.collided = true;
-          Ground.body.vel.set = (0, 0);
-          char.pos.x = char.pos.x;
         }
         // Make all other objects solid
         return true;
@@ -87,8 +85,8 @@ var BarrelEntity = me.Entity.extend({
           me.game.world.removeChild(this);
           game.data.score++;
           if (score > 9) {
-              this.body.vel.set(-12, 0);
-              Ground.body.vel.set(-12, 0);
+              this.body.vel.set(-15, 0);
+              Ground.body.vel.set(-15, 0);
           }
       }
       this.updateBounds();
