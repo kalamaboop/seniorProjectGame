@@ -87,7 +87,7 @@ var BarrelEntity = me.Entity.extend({
           me.game.world.removeChild(this);
           game.data.score++;
           //this.body.vel -= 1;
-          Ground.body.vel -= 1;
+          //Ground.body.vel -= 1;
           }
       }
       this.updateBounds();
