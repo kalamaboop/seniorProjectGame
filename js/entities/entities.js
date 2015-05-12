@@ -74,7 +74,7 @@ var BarrelEntity = me.Entity.extend({
         this._super(me.Entity, 'init', [x, y, settings]);
         this.alwaysUpdate = true;
         this.body.addShape(new me.Rect(0, 0, settings.width, settings.height));
-        this.body.vel.set(-10, 0);
+        this.body.vel.set(-6, 0);
         this.type = 'barrel';
     },
 
@@ -86,6 +86,9 @@ var BarrelEntity = me.Entity.extend({
       if (this.pos.x < -this.width) {
           me.game.world.removeChild(this);
           game.data.score++;
+          this.body.vel--;
+          Ground.body.vel--;
+          }
       }
       this.updateBounds();
       this._super(me.Entity, 'update', [dt]);
@@ -127,7 +130,7 @@ var Ground = me.Entity.extend({
       this._super(me.Entity, 'init', [x, y, settings]);
       this.alwaysUpdate = true;
 
-      this.body.vel.set(-10, 0);
+      this.body.vel.set(-6, 0);
       this.body.addShape(new me.Rect(0, 0, settings.width, settings.height));
       this.type = 'ground';
     },
