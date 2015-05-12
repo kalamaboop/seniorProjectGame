@@ -86,8 +86,8 @@ var BarrelEntity = me.Entity.extend({
           game.data.score++;
           var score = game.data.score;
           if (score > 9) {
-              this.body.vel.set(-15, 0);
-              Ground.body.vel.set(-15, 0);
+              this.body.setVelocity(-15, 0);
+              Ground.body.setVelocity(-15, 0);
           }
       }
       this.updateBounds();
