@@ -86,6 +86,10 @@ var BarrelEntity = me.Entity.extend({
       if (this.pos.x < -this.width) {
           me.game.world.removeChild(this);
           game.data.score++;
+          if (score > 9) {
+              this.body.vel.set(-12, 0);
+              Ground.body.vel.set(-12, 0);
+          }
       }
       this.updateBounds();
       this._super(me.Entity, 'update', [dt]);
