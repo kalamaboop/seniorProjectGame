@@ -90,7 +90,7 @@ var BarrelEntity = me.Entity.extend({
           Ground.body.vel--;
           }
       }
-      this.updateBounds();
+      //this.updateBounds();
       this._super(me.Entity, 'update', [dt]);
       return true;
     },
